@@ -5,6 +5,7 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 CFLAGS	misc-progs/Makefile	/^CFLAGS = -O2 -fomit-frame-pointer -Wall -I$(INCLUDEDIR)$/;"	m
+CONFIG_MODULE_SIG	scull/Makefile	/^CONFIG_MODULE_SIG=n$/;"	m
 DEBFLAGS	lddbus/Makefile	/^  DEBFLAGS = -O -g # "-O" is needed to expand inlines$/;"	m
 DEBFLAGS	lddbus/Makefile	/^  DEBFLAGS = -O2$/;"	m
 DEBFLAGS	sbull/Makefile	/^  DEBFLAGS = -O -g -DSBULL_DEBUG # "-O" is needed to expand inlines$/;"	m
@@ -42,6 +43,7 @@ DRIVER_VERSION	tty/tiny_tty.c	29;"	d	file:
 Devices	sbull/sbull.c	/^static struct sbull_dev *Devices = NULL;$/;"	v	typeref:struct:sbull_dev	file:
 FILES	misc-progs/Makefile	/^FILES = nbtest load50 mapcmp polltest mapper setlevel setconsole inp outp \\$/;"	m
 INCLUDEDIR	misc-progs/Makefile	/^INCLUDEDIR = $(KERNELDIR)\/include$/;"	m
+INCLUDE_VERMAGIC	scull/scull.mod.c	2;"	d	file:
 INVALIDATE_DELAY	sbull/sbull.c	64;"	d	file:
 ISA_BASE	misc-modules/silly.c	56;"	d	file:
 ISA_MAX	misc-modules/silly.c	57;"	d	file:
@@ -378,6 +380,7 @@ complete_init	misc-modules/complete.c	/^module_init(complete_init);$/;"	v
 complete_major	misc-modules/complete.c	/^static int complete_major = 0;$/;"	v	file:
 complete_read	misc-modules/complete.c	/^ssize_t complete_read (struct file *filp, char __user *buf, size_t count, loff_t *pos)$/;"	f
 complete_write	misc-modules/complete.c	/^ssize_t complete_write (struct file *filp, const char __user *buf, size_t count,$/;"	f
+create_files	scull/scull.init	/^function create_files () {$/;"	f
 ct_exit	misc-modules/seq.c	/^module_exit(ct_exit);$/;"	v
 ct_exit	misc-modules/seq.c	/^static void ct_exit(void)$/;"	f	file:
 ct_file_ops	misc-modules/seq.c	/^static struct file_operations ct_file_ops = {$/;"	v	typeref:struct:file_operations	file:
@@ -414,6 +417,8 @@ delay	shortprint/shortprint.c	/^static int delay = 0;$/;"	v	file:
 dev	include/lddbus.h	/^	struct device dev;$/;"	m	struct:ldd_device	typeref:struct:ldd_device::device
 dev	snull/snull.c	/^	struct net_device *dev;$/;"	m	struct:snull_packet	typeref:struct:snull_packet::net_device	file:
 device	scull/access.c	/^	struct scull_dev device;$/;"	m	struct:scull_listitem	typeref:struct:scull_listitem::scull_dev	file:
+device_specific_post_load	scull/scull.init	/^function device_specific_post_load () {$/;"	f
+device_specific_pre_unload	scull/scull.init	/^function device_specific_pre_unload () {$/;"	f
 devname	sculld/sculld.h	/^	char devname[20];$/;"	m	struct:sculld_dev
 do_close	tty/tiny_tty.c	/^static void do_close(struct tiny_serial *tiny)$/;"	f	file:
 do_short_read	short/short.c	/^ssize_t do_short_read (struct inode *inode, struct file *filp, char __user *buf,$/;"	f
@@ -512,6 +517,7 @@ ll	misc-modules/kdataalign.c	/^struct ll  {char c;  long long t;} ll;$/;"	s	file
 ll	misc-modules/kdataalign.c	/^struct ll  {char c;  long long t;} ll;$/;"	v	typeref:struct:ll
 ll	misc-progs/dataalign.c	/^struct ll  {char c;  long long t;} ll;$/;"	s	file:
 ll	misc-progs/dataalign.c	/^struct ll  {char c;  long long t;} ll;$/;"	v	typeref:struct:ll
+load_device	scull/scull.init	/^function load_device () {$/;"	f
 lock	sbull/sbull.c	/^        spinlock_t lock;                \/* For mutual exclusion *\/$/;"	m	struct:sbull_dev	file:
 lock	sbull/sbull.h	/^   spinlock_t lock;$/;"	m	struct:Sbull_Dev
 lock	snull/snull.c	/^	spinlock_t lock;$/;"	m	struct:snull_priv	file:
@@ -600,6 +606,7 @@ register_ldd_device	lddbus/lddbus.c	/^int register_ldd_device(struct ldd_device 
 register_ldd_driver	lddbus/lddbus.c	/^EXPORT_SYMBOL(register_ldd_driver);$/;"	v
 register_ldd_driver	lddbus/lddbus.c	/^int register_ldd_driver(struct ldd_driver *driver)$/;"	f
 remove	pci/pci_skel.c	/^static void remove(struct pci_dev *dev)$/;"	f	file:
+remove_files	scull/scull.init	/^function remove_files () {$/;"	f
 request_mode	sbull/sbull.c	/^static int request_mode = RM_SIMPLE;$/;"	v	file:
 result	scullc/main.c	/^	int result;$/;"	m	struct:async_work	file:
 result	sculld/main.c	/^	int result;$/;"	m	struct:async_work	file:
@@ -631,7 +638,7 @@ sbull_revalidate	sbull/sbull.c	/^int sbull_revalidate(struct gendisk *gd)$/;"	f
 sbull_transfer	sbull/sbull.c	/^static void sbull_transfer(struct sbull_dev *dev, unsigned long sector,$/;"	f	file:
 sbull_xfer_bio	sbull/sbull.c	/^static int sbull_xfer_bio(struct sbull_dev *dev, struct bio *bio)$/;"	f	file:
 sbull_xfer_request	sbull/sbull.c	/^static int sbull_xfer_request(struct sbull_dev *dev, struct request *req)$/;"	f	file:
-scull-objs	scull/Makefile	/^scull-objs := main.o pipe.o access.o$/;"	m
+scull-objs	scull/Makefile	/^scull-objs := main.o $/;"	m
 scull_a_firstdev	scull/access.c	/^static dev_t scull_a_firstdev;  \/* Where our range begins *\/$/;"	v	file:
 scull_access_cleanup	scull/access.c	/^void scull_access_cleanup(void)$/;"	f
 scull_access_devs	scull/access.c	/^} scull_access_devs[] = {$/;"	v	typeref:struct:scull_adev_info	file:
@@ -645,21 +652,15 @@ scull_c_open	scull/access.c	/^static int scull_c_open(struct inode *inode, struc
 scull_c_release	scull/access.c	/^static int scull_c_release(struct inode *inode, struct file *filp)$/;"	f	file:
 scull_cleanup_module	scull/main.c	/^module_exit(scull_cleanup_module);$/;"	v
 scull_cleanup_module	scull/main.c	/^void scull_cleanup_module(void)$/;"	f
-scull_create_proc	scull/main.c	/^static void scull_create_proc(void)$/;"	f	file:
 scull_dev	scull/scull.h	/^struct scull_dev {$/;"	s
-scull_devices	scull/main.c	/^struct scull_dev *scull_devices;	\/* allocated in scull_init_module *\/$/;"	v	typeref:struct:scull_dev
-scull_follow	scull/main.c	/^struct scull_qset *scull_follow(struct scull_dev *dev, int n)$/;"	f
-scull_fops	scull/main.c	/^struct file_operations scull_fops = {$/;"	v	typeref:struct:file_operations
+scull_devices	scull/main.c	/^struct scull_dev *scull_devices;	\/\/allocated in scull_init_module$/;"	v	typeref:struct:scull_dev
 scull_getwritespace	scull/pipe.c	/^static int scull_getwritespace(struct scull_pipe *dev, struct file *filp)$/;"	f	file:
 scull_init_module	scull/main.c	/^int scull_init_module(void)$/;"	f
 scull_init_module	scull/main.c	/^module_init(scull_init_module);$/;"	v
-scull_ioctl	scull/main.c	/^int scull_ioctl(struct inode *inode, struct file *filp,$/;"	f
 scull_listitem	scull/access.c	/^struct scull_listitem {$/;"	s	file:
-scull_llseek	scull/main.c	/^loff_t scull_llseek(struct file *filp, loff_t off, int whence)$/;"	f
 scull_major	scull/main.c	/^int scull_major =   SCULL_MAJOR;$/;"	v
 scull_minor	scull/main.c	/^int scull_minor =   0;$/;"	v
-scull_nr_devs	scull/main.c	/^int scull_nr_devs = SCULL_NR_DEVS;	\/* number of bare scull devices *\/$/;"	v
-scull_open	scull/main.c	/^int scull_open(struct inode *inode, struct file *filp)$/;"	f
+scull_nr_devs	scull/main.c	/^int scull_nr_devs = SCULL_NR_DEVS;	\/\/ number of bare scull devices $/;"	v
 scull_p_buffer	scull/pipe.c	/^int scull_p_buffer =  SCULL_P_BUFFER;	\/* buffer size *\/$/;"	v
 scull_p_cleanup	scull/pipe.c	/^void scull_p_cleanup(void)$/;"	f
 scull_p_devices	scull/pipe.c	/^static struct scull_pipe *scull_p_devices;$/;"	v	typeref:struct:scull_pipe	file:
@@ -676,26 +677,14 @@ scull_p_write	scull/pipe.c	/^static ssize_t scull_p_write(struct file *filp, con
 scull_pipe	scull/pipe.c	/^struct scull_pipe {$/;"	s	file:
 scull_pipe_fops	scull/pipe.c	/^struct file_operations scull_pipe_fops = {$/;"	v	typeref:struct:file_operations
 scull_priv_fops	scull/access.c	/^struct file_operations scull_priv_fops = {$/;"	v	typeref:struct:file_operations
-scull_proc_open	scull/main.c	/^static int scull_proc_open(struct inode *inode, struct file *file)$/;"	f	file:
-scull_proc_ops	scull/main.c	/^static struct file_operations scull_proc_ops = {$/;"	v	typeref:struct:file_operations	file:
 scull_qset	scull/main.c	/^int scull_qset =    SCULL_QSET;$/;"	v
 scull_qset	scull/scull.h	/^struct scull_qset {$/;"	s
 scull_quantum	scull/main.c	/^int scull_quantum = SCULL_QUANTUM;$/;"	v
-scull_read	scull/main.c	/^ssize_t scull_read(struct file *filp, char __user *buf, size_t count,$/;"	f
 scull_read_p_mem	scull/pipe.c	/^static int scull_read_p_mem(char *buf, char **start, off_t offset, int count,$/;"	f	file:
-scull_read_procmem	scull/main.c	/^int scull_read_procmem(char *buf, char **start, off_t offset,$/;"	f
-scull_release	scull/main.c	/^int scull_release(struct inode *inode, struct file *filp)$/;"	f
-scull_remove_proc	scull/main.c	/^static void scull_remove_proc(void)$/;"	f	file:
 scull_s_available	scull/access.c	/^static atomic_t scull_s_available = ATOMIC_INIT(1);$/;"	v	file:
 scull_s_device	scull/access.c	/^static struct scull_dev scull_s_device;$/;"	v	typeref:struct:scull_dev	file:
 scull_s_open	scull/access.c	/^static int scull_s_open(struct inode *inode, struct file *filp)$/;"	f	file:
 scull_s_release	scull/access.c	/^static int scull_s_release(struct inode *inode, struct file *filp)$/;"	f	file:
-scull_seq_next	scull/main.c	/^static void *scull_seq_next(struct seq_file *s, void *v, loff_t *pos)$/;"	f	file:
-scull_seq_ops	scull/main.c	/^static struct seq_operations scull_seq_ops = {$/;"	v	typeref:struct:seq_operations	file:
-scull_seq_show	scull/main.c	/^static int scull_seq_show(struct seq_file *s, void *v)$/;"	f	file:
-scull_seq_start	scull/main.c	/^static void *scull_seq_start(struct seq_file *s, loff_t *pos)$/;"	f	file:
-scull_seq_stop	scull/main.c	/^static void scull_seq_stop(struct seq_file *s, void *v)$/;"	f	file:
-scull_setup_cdev	scull/main.c	/^static void scull_setup_cdev(struct scull_dev *dev, int index)$/;"	f	file:
 scull_sngl_fops	scull/access.c	/^struct file_operations scull_sngl_fops = {$/;"	v	typeref:struct:file_operations
 scull_trim	scull/main.c	/^int scull_trim(struct scull_dev *dev)$/;"	f
 scull_u_count	scull/access.c	/^static int scull_u_count;	\/* initialized to 0 by default *\/$/;"	v	file:
@@ -712,7 +701,6 @@ scull_w_lock	scull/access.c	/^static spinlock_t scull_w_lock = SPIN_LOCK_UNLOCKE
 scull_w_open	scull/access.c	/^static int scull_w_open(struct inode *inode, struct file *filp)$/;"	f	file:
 scull_w_owner	scull/access.c	/^static uid_t scull_w_owner;	\/* initialized to 0 by default *\/$/;"	v	file:
 scull_w_release	scull/access.c	/^static int scull_w_release(struct inode *inode, struct file *filp)$/;"	f	file:
-scull_write	scull/main.c	/^ssize_t scull_write(struct file *filp, const char __user *buf, size_t count,$/;"	f
 scull_wusr_fops	scull/access.c	/^struct file_operations scull_wusr_fops = {$/;"	v	typeref:struct:file_operations
 scullc-objs	scullc/Makefile	/^scullc-objs := main.o$/;"	m
 scullc_aio_read	scullc/main.c	/^static ssize_t scullc_aio_read(struct kiocb *iocb, char __user *buf, size_t count,$/;"	f	file:
@@ -1140,6 +1128,7 @@ u8b	misc-modules/kdataalign.c	/^struct u8b {char c;  __u64     t;} u8b;$/;"	v	ty
 u8b	misc-progs/dataalign.c	/^struct u8b {char c;  __u64     t;} u8b;$/;"	s	file:
 u8b	misc-progs/dataalign.c	/^struct u8b {char c;  __u64     t;} u8b;$/;"	v	typeref:struct:u8b
 udev	usb/usb-skeleton.c	/^	struct usb_device *	udev;			\/* the usb device for this device *\/$/;"	m	struct:usb_skel	typeref:struct:usb_skel::usb_device	file:
+unload_device	scull/scull.init	/^function unload_device () {$/;"	f
 unregister_ldd_device	lddbus/lddbus.c	/^EXPORT_SYMBOL(unregister_ldd_device);$/;"	v
 unregister_ldd_device	lddbus/lddbus.c	/^void unregister_ldd_device(struct ldd_device *ldddev)$/;"	f
 unregister_ldd_driver	lddbus/lddbus.c	/^EXPORT_SYMBOL(unregister_ldd_driver);$/;"	v

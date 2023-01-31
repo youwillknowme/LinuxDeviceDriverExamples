@@ -1,0 +1,1 @@
+cmd_/home/xdx/LinuxDeviceDriverExamples/scull/Module.symvers := sed 's/\.ko$$/\.o/' /home/xdx/LinuxDeviceDriverExamples/scull/modules.order | scripts/mod/modpost -m -a  -o /home/xdx/LinuxDeviceDriverExamples/scull/Module.symvers -e -i Module.symvers   -T -

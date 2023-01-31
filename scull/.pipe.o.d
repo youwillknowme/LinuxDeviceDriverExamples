@@ -1,4 +1,4 @@
-main.o: /home/xdx/LinuxDeviceDriverExamples/scull/main.c \
+pipe.o: /home/xdx/LinuxDeviceDriverExamples/scull/pipe.c \
  include/linux/compiler-version.h include/linux/kconfig.h \
  include/generated/autoconf.h include/linux/compiler_types.h \
  include/linux/compiler_attributes.h include/linux/compiler-gcc.h \
@@ -230,13 +230,14 @@ main.o: /home/xdx/LinuxDeviceDriverExamples/scull/main.c \
  include/uapi/linux/dqblk_xfs.h include/linux/dqblk_v1.h \
  include/linux/dqblk_v2.h include/linux/dqblk_qtree.h \
  include/linux/projid.h include/uapi/linux/quota.h \
- include/linux/nfs_fs_i.h include/linux/proc_fs.h \
- include/linux/seq_file.h include/linux/cdev.h include/linux/device.h \
- include/linux/dev_printk.h include/linux/energy_model.h \
- include/linux/sched/cpufreq.h include/linux/sched/topology.h \
- include/linux/sched/idle.h include/linux/sched/sd_flags.h \
- include/linux/ioport.h include/linux/klist.h include/linux/pm.h \
- include/linux/device/bus.h include/linux/device/class.h \
- include/linux/device/driver.h arch/x86/include/asm/device.h \
- include/linux/pm_wakeup.h \
+ include/linux/nfs_fs_i.h include/linux/proc_fs.h include/linux/poll.h \
+ include/uapi/linux/poll.h arch/x86/include/generated/uapi/asm/poll.h \
+ include/uapi/asm-generic/poll.h include/uapi/linux/eventpoll.h \
+ include/linux/cdev.h include/linux/device.h include/linux/dev_printk.h \
+ include/linux/energy_model.h include/linux/sched/cpufreq.h \
+ include/linux/sched/topology.h include/linux/sched/idle.h \
+ include/linux/sched/sd_flags.h include/linux/ioport.h \
+ include/linux/klist.h include/linux/pm.h include/linux/device/bus.h \
+ include/linux/device/class.h include/linux/device/driver.h \
+ arch/x86/include/asm/device.h include/linux/pm_wakeup.h \
  /home/xdx/LinuxDeviceDriverExamples/scull/scull.h
