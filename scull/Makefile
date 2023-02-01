@@ -14,7 +14,6 @@ CFLAGS += -I$(LDDINC)
 
 ifneq ($(KERNELRELEASE),)
 # call from kernel build system
-
 scull-objs := main.o 
 # scull-objs := main.o pipe.o access.o
 
@@ -27,7 +26,6 @@ PWD       := $(shell pwd)
 
 modules:
 	$(MAKE) -C $(KERNELDIR) M=$(PWD) LDDINC=$(PWD)/../include modules
-
 endif
 
 

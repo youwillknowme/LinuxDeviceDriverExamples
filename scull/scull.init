@@ -6,9 +6,13 @@ SECTION="misc"
 
 # The list of filenames and minor numbers: $PREFIX is prefixed to all names
 PREFIX="scull"
-FILES="     0 0         1 1         2 2        3 3    priv 16 
-        pipe0 32    pipe1 33    pipe2 34   pipe3 35
-       single 48      uid 64     wuid 80"
+FILES="     0 0         1 1         2 2        3 3"
+
+
+#priv 16 
+#pipe0 32    pipe1 33    pipe2 34   pipe3 35
+#single 48      uid 64     wuid 80
+
 
 INSMOD=/sbin/insmod; # use /sbin/modprobe if you prefer
 

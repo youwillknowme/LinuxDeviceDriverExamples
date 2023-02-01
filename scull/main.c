@@ -607,6 +607,7 @@ static void scull_setup_cdev(struct scull_dev *dev, int index)
     cdev_init(&dev->cdev, &scull_fops);
     dev->cdev.owner = THIS_MODULE;
     err = cdev_add (&dev->cdev, devno, 1);
+    pr_info("devno:%d\n", devno);
     /* Fail gracefully if need be */
     if (err)
         printk(KERN_NOTICE "Error %d adding scull%d", err, index);
@@ -655,7 +656,7 @@ int scull_init_module(void)
 	}
 
         /* At this point call the init function for any friend device */
-	dev = MKDEV(scull_major, scull_minor + scull_nr_devs);
+//	dev = MKDEV(scull_major, scull_minor + scull_nr_devs);
 //	dev += scull_p_init(dev);
 //	dev += scull_access_init(dev);
 

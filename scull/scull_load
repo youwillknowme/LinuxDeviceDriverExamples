@@ -29,7 +29,8 @@ mknod /dev/${device}3 c $major 3
 ln -sf ${device}0 /dev/${device}
 chgrp $group /dev/${device}[0-3] 
 chmod $mode  /dev/${device}[0-3]
-
+:'
+echo test
 rm -f /dev/${device}pipe[0-3]
 mknod /dev/${device}pipe0 c $major 4
 mknod /dev/${device}pipe1 c $major 5
@@ -58,7 +59,7 @@ rm -f /dev/${device}priv
 mknod /dev/${device}priv  c $major 11
 chgrp $group /dev/${device}priv
 chmod $mode  /dev/${device}priv
-
+'
 
 
 
